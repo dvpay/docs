@@ -3,6 +3,7 @@ import {hopeTheme} from "vuepress-theme-hope";
 import {sidebarEn, sidebarRu} from "./configs/sidebar";
 
 export default defineUserConfig({
+    base: "/docs/",
     theme: hopeTheme({
         logo: '/image/logo.svg',
         logoDark: '/image/logoDark.svg',
