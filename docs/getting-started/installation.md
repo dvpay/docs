@@ -2,8 +2,8 @@
 
 You can install DV PAY in several ways
 
-- [Install from shell script](./INSTALLATION.html#install-from-shell-script)
-- [Web Install](./INSTALLATION.html#install-from-shell-script)
+- [Install from shell script](./INSTALLATION.html#Install from shell script)
+- [Web Install](./INSTALLATION.html#web-installation)
 
 ## Prepairing for installation
 

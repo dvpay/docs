@@ -1,25 +1,24 @@
-# Web Hook
+# Web-hook
 
-To notify the store when a payment has been received, we use a web hook mechanism.
-To receive information about payments in your store, register the endpoint to which you want to receive notifications
-about payments in the merchant’s store settings
+Для уведомлять магазина о получении платежа, мы используем механизм web-hook.
+Чтобы получать информацию о платежах в вашем магазине, зарегистрируйте конечную точку, на которую вы хотите получать уведомления
+о платежах, в настройках магазина мерчанта.
 
 ![img.png](../assets/images/callback_setting.png)
+Где используется “secret” для подписи.
 
-Where the secret is used for signing
+Обязательно установите флажок напротив "Поступил новый платеж"
 
-Be sure to check the box next to A new payment has been received
+Для получение обратного вызова с целью узнать о платеже, вам необходимо создать конечную точку на стороне интегратора, на
+которую мерчант отправит событие в данный момент. Мерчант поддерживает только один вариант событий: получение
+платежа.
 
-Receiving a callback in order to find out about a payment, you need to create an endpoint on the integrator side to
-which the merchant will send an event at the given moment. The merchant supports only one event option: receiving a
-payment
+Для обеспечения безопасности магазина используется механизм подписи. Мерчант передает зашифрованную строку sha256 в заголовке X-sign,
+которая включает в себя тело отправляемого запроса и объединенный “secret”.
 
-To secure the store, a signature mechanism is used. The merchant transmits a hashed sha256 string in the X-sign header,
-which includes the body of the request being sent and the concatenated secret
+Например, мерчант отправляет веб-хук по URL _____________ с запросом POST
 
-For example, a merchant sends a web hook to the url `https://mystore.com/callback/merchant` with a POST request
-
-The request body in this case will be like this
+Тело запроса в этом случае будет выглядеть следующим образом
 
 ```Json
 {
@@ -47,11 +46,10 @@ The request body in this case will be like this
   }
 }
 ```
+наш заголовок X-sign будет eaba3d825829da2db79b95ef362e7b24a4c8b27fb643bad54d180e43ca9152de
 
-our X-sign header will be eaba3d825829da2db79b95ef362e7b24a4c8b27fb643bad54d180e43ca9152de
-
-Accordingly, on the store side it is worth checking the validity of the signature by creating the same hash and checking
-it with the header
+Соответственно, со стороны хранилища стоит проверить правильность подписи, создав тот же хэш и сверив
+его с заголовком
 
 ```php
 $requestBodyString = '{"orderId":"","status":"paid","createdAt":"2023-09-15T07:31:46.000000Z","paidAt":"2023-09-15T07:31:46.000000Z","expiredAt":"2023-09-15T07:51:46.000000Z","amount":15,"receivedAmount":"15.00","transactions":[{"txId":"98af9289aa06da5a13a9881dd2ee74ba85cfd1af20343ce50c6071275eea8e7b","createdAt":"2023-09-15 07:31:46","currency":"USDT","blockchain":"tron","amount":"15.00000000","amountUsd":"15.00","rate"
@@ -62,4 +60,6 @@ $secret = 'c23a3ce904b4a9421d35590639f3589e0a491bf7'
 $sign = hash('sha256', $requestBodyString . $secret); //eaba3d825829da2db79b95ef362e7b24a4c8b27fb643bad54d180e43ca9152de
 ```
 
-if for some reason it was not possible to receive a 200 response from the store, after some time the merchant will send the message again, the frequency of sending increases exponentially
+если по какой-либо причине не удалось получить ответ 200 от магазина, через некоторое время мерчант повторно отправит сообщение, частота отправки увеличивается экспоненциально. 
+
+

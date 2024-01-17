@@ -1,28 +1,28 @@
 ---
-title: API integration
+title: Интеграция по API
 ---
 
-## Preparation before and integration
+## Подготовка до и интеграция
 
-Before you start using the API, you need to create a store in the merchant’s account and receive an API token
+Прежде чем начать использовать API, вам необходимо создать магазин в учетной записи мерчанта и получить токен API
 
 ![api token](../assets/images/api-token.png)
 
-This token must be set for all requests in x-api-key headers
+Этот токен должен быть установлен для всех запросов в заголовках x-api-key
 
-The X-Api-Key that we created is needed to authenticate the store in the merchant
+Созданный нами X-Api-ключ нужен для аутентификации магазина в учетной записи мерчанта.
 
-## Endpoints
+## Конечные точки
 
-### Creating addresses for the payer
+### Создание адресов для плательщика
 
-If the payer has not yet been created then we will create it, if it has already been created then we will take the
-existing one and also return the payment addresses for all blockchains. We highly recommend using this method for simple
-integration and constant receipt of addresses
+Если плательщик еще не создан, то мы создадим его, если он уже создан, то возьмем
+Существующего и вернем платежные адреса для всех блокчейнов. Мы настоятельно рекомендуем использовать этот метод для простой
+интеграции и постоянного получения адресов
 
 `[POST] /payer/addresses`
 
-body request json
+Тело запроса json
 
 ```json
 {
@@ -31,8 +31,7 @@ body request json
   "ip": "string"
 }
 ```
-
-response example
+пример ответа
 
 ```
 
@@ -64,23 +63,23 @@ response example
 }
 ```
 
-### Create payer
+### Создать плательщика
 
-Creating a payer, if a user with such an identifier is created, then data from the database will be returned
+Создаем плательщика, если создан пользователь с таким идентификатором, то будут возвращены данные из базы данных
+
 
 `[POST] /payer/create/`
 
-body request json
-
+тело запроса json
 ```json
 {
   storeUserId: "string"
 }
 ```
 
-storeUserId unique identifier of the payer in the store
+storeUserId уникальный идентификатор плательщика в магазине
 
-response example
+пример ответа
 
 ```json
 {
@@ -113,21 +112,19 @@ response example
 }
 ```
 
-It is worth noting that the address field will be empty if we have just created a payer
+Стоит отметить, что строку адреса следует отметить пустой, если мы только что создали плательщика
 
-### Request the payer addresses for a specific currency
+### Запрос адресов плательщика для определенной валюте
 
-Perhaps you do not want to accept payments only in a specific currency, then this endpoint will be useful to you
-
+Возможно, вы не хотите принимать платежи только в определенной валюте, тогда эта конечная точка будет вам полезна
 `[GET]/address/{payer}/{currency}`
 
-Where payer is the id of the payer that was received when creating the corresponding request, currency currency
-BTC.Bitcoin, USDT.tron example request
+Где payer - идентификатор плательщика, который был получен при создании соответствующего запроса, а currency – валюта
+BTC.Bitcoin, USDT.tron пример запроса
 
 `[GET]/address/9ff39a38-71e1-4a27-83f6-65312691e28e/BTC.Bitcoin`
 
-response example
-
+пример ответа
 ```
 {
   "result": {
@@ -143,18 +140,15 @@ response example
 }
 ```
 
-### Request the store currency rate
-
+### Запрос курса валюты магазина
 `[GET] /v2/stores/currencies/rate`
 
-Currency is passed in the query parameter
+Валюта передается в параметре запроса
 
-request example 
-
+пример запроса
 `[GET] /v2/stores/currencies/rate?currency=BTC.Bitcoin`
 
-response example
-
+пример ответа
 
 ```json
 {
@@ -170,3 +164,5 @@ response example
   "errors": []
 }
 ```
+
+

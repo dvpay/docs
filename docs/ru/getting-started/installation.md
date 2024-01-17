@@ -1,91 +1,86 @@
-# Install
+# Установка
 
-You can install DV PAY in several ways
+Вы можете установить DV PAY несколькими способами
 
-- [Install from shell script](./INSTALLATION.html#install-from-shell-script)
-- [Web Install](./INSTALLATION.html#install-from-shell-script)
+- [Установить с помощью shell-скрипта](./INSTALLATION.html#установить-с-помощью-shell-скрипта)
+- [Веб-установка](./INSTALLATION.html#веб-установка)
 
-## Prepairing for installation
+## Подготовка к установке
 
-For successful installation you will need 3 domains:
+Для успешной установки вам понадобятся 3 домена:
 
-- **Frontend domain.** Domain on which the personal account user interface will be deployed;
-- **Backend domain.** Domain where the backend will be located;
-- **Payment domain.** The domain where the payment form for your clients will be located;
-- **Processing URL** contact [DV Support](https://t.me/dv_pay_bot) to get it.
+- **Домен Frontend (Внешний интерфейс).** Домен, на котором будет развернут пользовательский интерфейс личного кабинета;
+- **Домен Backend (Внутренний интрефейс).** Домен, где будет расположен серверная часть;
+- **Платежный домен.** Домен, в котором будет размещена форма оплаты для ваших клиентов;
+- **URL обработки** Свяжитесь с службой поддержки [DV Support](https://t.me/dv_pay_bot), чтобы получить его.
 
-> For example, if your main site is on the `mybestshop.com` domain, then you can create the following additional
-> domains:
+> Например, если ваш основной сайт находится в домене `mybestshop.com`, вы можете создать следующий дополнительные
+> домены:
 >- `app.mybestshop.com` (frontend)
 >- `api.mybestshop.com` (backend)
 >- `pay.mybestshop.com` (payment)
 
-Prepare a virtual machine with CentOS. All necessary update packages will be installed automatically during script
-execution.
+Подготовьте виртуальную машину с CentOS. Все необходимые пакеты обновлений будут установлены автоматически во время выполнения скрипта.
+## Установить с помощью shell-скрипта
 
-## Install from shell script
+### Шаг 1. Запуск
 
-### Step 1. Launch
+Для успешной установки необходимого приложения на ваш сервер вам понадобится сервер с операционной системой CentOS.
+Пожалуйста, убедитесь, что ваш сервер соответствует этим требованиям.
 
-To successfully install the required application on your server, you'll need a server running the CentOS operating
-system. Please ensure that your server meets these requirements.
-
-To initiate the application installation, execute the following command in your server terminal:
+Для запуска установки приложения выполните следующую команду в терминале вашего сервера:
 
 ``` shell
 bash <(curl -Ls https://raw.githubusercontent.com/dvpay/dv-backend/master/init.sh)
 ```
 
-This command will download and automatically run the installation script from the specified repository link. Ensure that
-your server has internet access for the process to complete successfully.
+Эта команда загрузит и автоматически запустит скрипт установки по указанной ссылке репозитория. Убедитесь, что ваш сервер имеет доступ в Интернет для успешного завершения процесса. 
 
-Make sure to verify the validity of the repository link to ensure you are using the latest version of the installation
-script.
+Обязательно проверьте действительность ссылки репозитория, чтобы убедиться, что вы используете последнюю версию скрипта установки.
 
-If you encounter any questions or issues during the installation process, feel free to reach out for
-support. [DV Support](https://t.me/dv_pay_support)
+Если в процессе установки у вас возникнут какие-либо вопросы или неполадки, не стесняйтесь обращаться в службу поддержки. [Служка поддержки DV] (https://t.me/dv_pay_support)
 
-### Step 2. Input domains
+### Шаг 2. Введите домены
 
-Enter your domains, which you got during [preparation](#prepairing-for-installation)
+Введите ваши домены, которые вы получили во время [Подкготовки](#подготовка-к-установке)
 
 ![Launch](https://i.ibb.co/pLXL2qk/Domains.jpg)
 
-### Step 3. Enter processing URL
 
-If you are going to use your own payments processing - enter IP or URL here. If not -
-ask [DV Support](https://t.me/dv_pay_support) to use ours ablosutely free!
+### Шаг 3. Введите URL-адрес обработки
 
+Если вы собираетесь использовать свою собственную обработку платежей введите IP или URL-адрес здесь. 
+Если нет -
+обратитесь в [Службу поддержки DV](https://t.me/dv_pay_support ), чтобы воспользоваться нашей обработкой платежей  абсолютно бесплатно!
 ![Launch](https://i.ibb.co/LzHQ1Ss/tg-image-4049204792.jpg)
 
-After entering processing URL script will continue installation. In the end of script you will be provided with **DV
-Credentials - copy it to a safe place.**
+После ввода URL-адреса обработки скрипт продолжит установку. В конце скрипта вам будет предоставлен **DV
+Учетные данные - скопируйте их в безопасное место.**
 
-## Web installation
+## Веб-установка
 
-To install the product you will need a server with a Linux operating system, we recommend using the centos distribution
-and you need to install the following software:
+Для установки продукта вам понадобится сервер с операционной системой Linux, рекомендуется использовать дистрибутив Centos, 
+а также установить следующее программное обеспечение:
 
 - Nginx
-- php 8.1^ and php extension
-  cli,fpm,mysqlnd,pdo_mysql,zip,devel,gd,mbstring,curl,xml,pear,bcmath,json,pecl-redis5,exif,pcntl,sockets,gmp
+- php 8.1^ и расширение php
+cli, fpm, mysqlnd, pdo_mysql, zip, devel, gd, mbstring, curl, xml, pear, bcmath, json, pecl-redis 5, ext, pcntl, сокеты, gmp
 - composer
 - redis
-- Database mysql percona and database need make with collation utf8mb4_unicode_ci
-- node 18^ and npm
-- global installed vite package for install ``` npm install -g vite```
+- База данных mysql percona, созданная с параметрами сортировки utf8mb4_unicode_ci
+- узел 18^ и npm
+- глобальный установленный пакет vite для установки
 
-### Recommendations
+### Рекомендации
 
-Create a new user in you server for example:
-
+Например, создайте нового пользователя на вашем сервере:
 ```shell
 adduser server && usermod -aG wheel server
 ```
 
-### Step 1. Download and extract Web Installer
+### Шаг 1. Загрузка и извлечение веб-установщика
 
-Create a new directory and upload the archive with the installer into it. For example, in /home/server/merchant:
+Создайте новый каталог и загрузите в него архив с установщиком. Например, в /home/server/merchant:
 
 ```shell
 mkdir -p /home/server/merchant && cd /home/server/merchant
@@ -94,24 +89,21 @@ mkdir -p /home/server/merchant && cd /home/server/merchant
 ```shell
 wget https://github.com/stickpro/web-installer/releases/download/v1.0.1/install.tar.gz && tar -xzvf install.tar.gz
 ```
+### Шаг 2. Предоставьте права на каталог
 
-### Step 2. Grant rights to the directory
-
-Give the created user rights to the directory, where the installer is downloaded and unpacked:
-
+Предоставьте созданному пользователю права на каталог, где загружен и распакован установщик:
 ```shell
 chmod 755 /home/server && chown server:server -R /home/server/merchant
 ```
 
-### Step 3. Add nginx configuration
+### Шаг 3. Добавление конфигурации nginx
 
-In the `etc/nginx/conf.d` directory, create a configuration file with the extension `.conf`, give it a convenient name:
+В каталоге `etc/nginx/conf.d` создайте файл конфигурации с расширением `.conf`, дайте ему удобное имя:
 
 ```shell
 touch mydomain.com.conf
 ```
-
-Fill the configuration file with the following code, substituting your domain (line 4) and path to php.sock (lines 30,
+Заполните файл конфигурации следующим кодом, заменив свой домен (строка 4) и путь к php.sock (строки 30,
 45 и 51):
 
 ```shell
@@ -175,66 +167,61 @@ server {
 }
 ```
 
-### Step 4. Running the installer
+### Шаг 4. Запуск программы установки
 
-Now you are ready to run the installer - it will check matches the installed packages and will ask for the necessary
-information. Open your browser and go to link mydomain.com/install.html
+Теперь вы готовы запустить программу установки - она проверит соответствие установленных пакетов и запросит необходимую
+информация. Откройте ваш браузер и перейдите по ссылке mydomain.com/install.html
 
-#### 1.Enter domain
+####1.Введите домен
 
 ![InstallStep1](../assets/images/startingInstaller1.jpg)
 
-#### 2.Connecting the database
+#### 2.Подключение базы данных
 
-Enter the credentials for connect to you database.
+Введите учетные данные для подключения к вашей базе данных.
 
 ![InstallStep1](../assets/images/startingInstaller2.jpg)
 
-#### 3.Set the login and password for admin
+#### 3.Установите логин и пароль для администратора
 
-Enter the email address that will be be used as a login, and also set password for the account.
-
+Введите адрес электронной почты, который будет использоваться в качестве логина, а также установите пароль для учетной записи.
 ![InstallStep1](../assets/images/startingInstaller3.jpg)
 
-#### 4.Complete installation
+#### 4.Завершите установку
 
-After checking access to the database, the installation will begin. Once the installation is complete, click the “go to
-website” button to go to your DV Pay personal account. Log in using the username and password that asked in the last
-step. 
-
+После проверки доступа к базе данных начнется установка. После завершения установки нажмите кнопку "Перейти на
+веб-сайт", чтобы перейти в свой личный кабинет DV Pay. Войдите в систему, используя имя пользователя и пароль, запрошенные на последнем
+шаге.
 ![InstallStep1](../assets/images/startingInstaller4.jpg)
 
-### Step 5. Setting up queues and cron
-
-Launch cron editor:
+### Шаг 5. Настройка очередей и cron
+Запустите редактор cron:
 
 ```shell
  crontab -e
 ```
 
-Add a regular launch setting:
+Добавьте настройку регулярного запуска:
 
 ```shell
 * * * * * cd /path-to-your-project && /usr/bin/php artisan schedule:run >> /dev/null 2>&1
 ```
 
-::: warning Path
-Change /path-to-your-project to actual path to you directory with application
-and actual path to you /usr/bin/php 
+::: Предупреждения
+Измените /path-to-your-project на фактический путь к вашему каталогу с приложением
+и фактический путь к вашему /usr/bin/php
 :::
 
-#### Setting up systemd configuration
+#### #### Настройка конфигурации системы
 
-Go to directory /etc/systemd/system/ and create 2 configuration files: 
+Перейдите в каталог /etc/systemd/system/ и создайте 2 файла конфигурации:
 
 ```shell
 cd /etc/systemd/system
 touch transfers.service queue@.service
 ```
-
-Add configuration code to each file:
-
-For the transfers.service file:
+Добавьте код конфигурации в каждый файл:
+Для файла transfers.service:
 
 ```shell
 [Unit]
@@ -257,7 +244,8 @@ SyslogIdentifier=transfers
 [Install]
 WantedBy=multi-user.target
 ```
-For the file queue@.service:
+Для файла queue@.service:
+
 ```shell
 [Unit]
 Description=Queue Worker %I
@@ -272,7 +260,8 @@ Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
-Run the systemd demon
+
+Запустите system demon
 
 ```shell
 systemctl enable transfers.service
@@ -281,3 +270,4 @@ systemctl enable queue@.service
 systemctl start transfers.service
 systemctl start queue@.service
 ```
+

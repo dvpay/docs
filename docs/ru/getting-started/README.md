@@ -1,13 +1,12 @@
 ---
-title: Getting Started
+title: Подготовка к работе
 ---
 
-# Getting Started with DV pay
+# Начало работы с DV PAY
+Это руководство предназначено для тех, кто впервые знакомится с в DV PAY и хотят быстро ознакомиться с нашей системой - настроить основную конфигурацию, внести небольшие настройки и быть готовыми принимать первые платежи в вашем новом мерчанте.
 
-This tutorial is dedicated to DV PAY newcomers, who want to quickly check our system out - see basic configuration, do
-some small customizations, and be able to accept the first payments in your new merchant.
-
-::: warning Warning
-Be aware, that this guide is written for developers! To understand every chapter correctly, you need to have at least a
-foggy idea about object-oriented programming and PHP language. Laravel experience will also be handy.
+::: warning Предупреждение
+Обратите внимание, что это руководство написано для разработчиков! Для правильного понимания каждой главы вам нужно хотя бы иметь приблизительное
+представление об объектно-ориентированном программировании и языке PHP. Опыт работы с Laravel также будет полезен.
 :::
+
