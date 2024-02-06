@@ -92,7 +92,7 @@ mkdir -p /home/server/merchant && cd /home/server/merchant
 ```
 
 ```shell
-wget https://github.com/stickpro/web-installer/releases/download/v1.0.1/install.tar.gz && tar -xzvf install.tar.gz
+wget https://github.com/dvpay/web-installer/archive/refs/tags/1.0.1.tar.gz && tar -xzvf install.tar.gz
 ```
 
 ### Step 2. Grant rights to the directory
