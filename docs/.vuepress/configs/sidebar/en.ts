@@ -20,7 +20,9 @@ export const sidebarEn = sidebar({
                 "/api-integration/README.md",
                 "/api-integration/callback.md",
             ]
-        }
+        },
+        "how-to-use/README.md",
+        "staking/README.md"
     ],
 });
 
